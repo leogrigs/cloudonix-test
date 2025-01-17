@@ -17,4 +17,12 @@ export class AppComponent {
       this.products = data;
     });
   }
+
+  public editProduct(product: Product): void {
+    console.log(product);
+  }
+
+  public deleteProduct(product: Product): void {
+    console.log(product);
+  }
 }

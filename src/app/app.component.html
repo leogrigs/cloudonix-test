@@ -1,6 +1,10 @@
 <main>
   <div class="example-container">
     <app-login (onSubmitForm)="login()"></app-login>
-    <app-product-table [products]="products"></app-product-table>
+    <app-product-table
+      [products]="products"
+      (onEditProduct)="editProduct($event)"
+      (onDeleteProduct)="deleteProduct($event)"
+    ></app-product-table>
   </div>
 </main>
