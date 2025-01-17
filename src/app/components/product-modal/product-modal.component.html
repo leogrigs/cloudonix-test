@@ -1,0 +1,42 @@
+<div class="product-modal">
+  <h2 mat-dialog-title class="product-modal-title">
+    {{ data ? "Edit Product" : "Create Product" }}
+  </h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <mat-dialog-content class="product-modal-content">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput matFormFieldControl formControlName="name" />
+        <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="cost" type="number" />
+        <mat-error *ngIf="productForm.get('cost')?.hasError('required')">
+          Price is required
+        </mat-error>
+        <mat-error *ngIf="productForm.get('cost')?.hasError('min')">
+          Price cannot be negative
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="product-modal-actions">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button type="submit" [disabled]="productForm.invalid">
+        {{ data ? "Save" : "Create" }}
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

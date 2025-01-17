@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/login/login.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.interceptor';
@@ -18,9 +20,11 @@ import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.intercep
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatButtonModule,
     ProductTableComponent,
     LoginComponent,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [
     {

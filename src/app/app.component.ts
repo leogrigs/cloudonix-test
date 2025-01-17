@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductModalComponent } from './components/product-modal/product-modal.component';
 import { Product } from './interfaces/product.interface';
 import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.service';
 
@@ -9,6 +11,7 @@ import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.s
 })
 export class AppComponent {
   private cloudonixHttp = inject(CloudoNixHttpService);
+  private dialog = inject(MatDialog);
 
   public products: Product[] = [];
 
@@ -19,10 +22,30 @@ export class AppComponent {
   }
 
   public editProduct(product: Product): void {
-    console.log(product);
+    const dialogRef = this.dialog.open(ProductModalComponent, {
+      data: product,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Updated product:', result);
+      }
+    });
+  }
+
+  public addProduct(): void {
+    const dialogRef = this.dialog.open(ProductModalComponent, {
+      data: null,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Created product:', result);
+      }
+    });
   }
 
   public deleteProduct(product: Product): void {
-    console.log(product);
+    console.log('Deleting product:', product);
   }
 }

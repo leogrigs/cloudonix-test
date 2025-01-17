@@ -1,6 +1,7 @@
 <main>
   <div class="example-container">
     <app-login (onSubmitForm)="login()"></app-login>
+    <button mat-button (click)="addProduct()">Add Product</button>
     <app-product-table
       [products]="products"
       (onEditProduct)="editProduct($event)"
