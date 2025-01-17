@@ -11,12 +11,7 @@ export class CloudoNixHttpService {
 
   public getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(
-      'http://rest-items.research.cloudonix.io/items',
-      {
-        headers: {
-          Authorization: 'Bearer 01234567890',
-        },
-      }
+      'http://rest-items.research.cloudonix.io/items'
     );
   }
 }
