@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Product } from './interfaces/product.interface';
 import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.service';
 
@@ -7,12 +7,12 @@ import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.s
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private cloudonixHttp = inject(CloudoNixHttpService);
 
   public products: Product[] = [];
 
-  public ngOnInit(): void {
+  public login(): void {
     this.cloudonixHttp.getProducts().subscribe((data) => {
       this.products = data;
     });
