@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -25,7 +25,7 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
   @Output() public onSubmitForm = new EventEmitter<void>();
@@ -34,6 +34,11 @@ export class LoginComponent {
     this.loginForm = this.fb.group({
       authKey: ['', Validators.required],
     });
+  }
+
+  // FIXME: remove
+  public ngOnInit(): void {
+    this.onSubmitForm.emit();
   }
 
   public onSubmit(): void {
