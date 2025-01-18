@@ -74,9 +74,10 @@
         [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'"
       >
         <div class="expanded-detail">
-          <h4>Details</h4>
-          <p><strong>Description:</strong> {{ element.description }}</p>
-          <p><strong>Profile:</strong> {{ element.profile | json }}</p>
+          <app-product-details
+            [profile]="element.profile"
+            [description]="element.description"
+          ></app-product-details>
         </div>
       </div>
     </td>

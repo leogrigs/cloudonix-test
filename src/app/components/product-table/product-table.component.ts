@@ -13,12 +13,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Product } from 'src/app/interfaces/product.interface';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    ProductDetailsComponent,
     MatTableModule,
     CurrencyPipe,
     JsonPipe,
