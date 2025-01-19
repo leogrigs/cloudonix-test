@@ -15,6 +15,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Product } from 'src/app/interfaces/product.interface';
+import { DynamicProfileFieldsComponent } from '../dynamic-profile-fields/dynamic-profile-fields.component';
 import { ProfileFieldsComponent } from '../profile-fields/profile-fields.component';
 
 @Component({
@@ -25,6 +26,7 @@ import { ProfileFieldsComponent } from '../profile-fields/profile-fields.compone
     MatInputModule,
     MatButtonModule,
     ProfileFieldsComponent,
+    DynamicProfileFieldsComponent,
     MatFormFieldModule,
     ReactiveFormsModule,
   ],
@@ -41,9 +43,14 @@ export class ProductModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: Product | null,
     private fb: FormBuilder
   ) {
-    this.dynamicProfileData = Object.keys(data?.profile || {}).filter(
-      (key) => key !== 'type' && key !== 'available' && key !== 'backlog'
-    );
+    const _profileData = { ...data?.profile };
+    Object.keys(_profileData || {}).forEach((key) => {
+      if (key === 'type' || key === 'available' || key === 'backlog') {
+        delete _profileData[key];
+      }
+    });
+
+    this.dynamicProfileData = _profileData;
 
     this.productForm = this.fb.group({
       name: [data?.name || '', Validators.required],
@@ -57,17 +64,23 @@ export class ProductModalComponent {
     });
   }
 
-  getProfileFormGroup() {
+  public getProfileFormGroup() {
     return this.productForm.get('profile') as FormGroup;
   }
 
-  onSubmit() {
+  public onSubmit() {
     if (this.productForm.valid) {
-      this.dialogRef.close(this.productForm.value);
+      const _product = this.productForm.value;
+      _product.profile = {
+        ..._product.profile,
+        ...this.dynamicProfileData,
+      };
+      console.log(_product);
+      this.dialogRef.close(_product);
     }
   }
 
-  onCancel() {
+  public onCancel() {
     this.dialogRef.close();
   }
 }

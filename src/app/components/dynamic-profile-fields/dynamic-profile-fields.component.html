@@ -1,0 +1,72 @@
+<div class="dynamic-profile-fields">
+  <!-- Existing key-value pairs -->
+  <div *ngFor="let key of keys" class="key-value-row">
+    <mat-form-field class="key-field" appearance="fill">
+      <mat-label>Key</mat-label>
+      <input matInput [value]="key" disabled />
+    </mat-form-field>
+
+    <mat-form-field class="value-field" appearance="fill">
+      <mat-label>Value</mat-label>
+      <input
+        matInput
+        [value]="dynamicProfileData[key]"
+        [readonly]="editingKey !== key"
+        (input)="setInputValue(key, $event)"
+      />
+    </mat-form-field>
+
+    <!-- Action Menu -->
+    <button
+      *ngIf="editingKey !== key"
+      type="button"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button type="button" mat-menu-item (click)="editValue(key)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button type="button" mat-menu-item (click)="deleteKey(key)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-menu>
+
+    <!-- Save Button for Editing -->
+    <button
+      type="button"
+      mat-icon-button
+      *ngIf="editingKey === key"
+      (click)="saveValue(key)"
+    >
+      <mat-icon>check</mat-icon>
+    </button>
+  </div>
+
+  <!-- Add New Key-Value Pair -->
+  <div class="add-row">
+    <mat-form-field class="key-field" appearance="fill">
+      <mat-label>New Key</mat-label>
+      <input matInput [(ngModel)]="newKey" placeholder="Enter key" />
+    </mat-form-field>
+
+    <mat-form-field class="value-field" appearance="fill">
+      <mat-label>New Value</mat-label>
+      <input matInput [(ngModel)]="newValue" placeholder="Enter value" />
+    </mat-form-field>
+
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      (click)="addKeyValue()"
+      [disabled]="!newKey"
+    >
+      Add
+    </button>
+  </div>
+</div>

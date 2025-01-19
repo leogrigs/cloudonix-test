@@ -1,0 +1,21 @@
+.dynamic-profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .key-value-row,
+  .add-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .key-field,
+    .value-field {
+      flex: 1;
+    }
+
+    button {
+      margin-left: 8px;
+    }
+  }
+}
