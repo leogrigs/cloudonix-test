@@ -16,7 +16,7 @@ export class AppComponent {
   private dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  public products$: Observable<Product[]> = this.cloudonixHttp.getProducts();
+  public products$!: Observable<Product[]>;
 
   public updateProducts(): void {
     this.products$ = this.cloudonixHttp.getProducts();
@@ -29,8 +29,6 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(result);
-
         this.cloudonixHttp.editProduct(product.id, result).subscribe({
           next: () => {
             this.updateProducts();

@@ -43,13 +43,19 @@ export class AuthComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.onSubmitForm.emit();
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      this.isTokenSet = true;
+      this.panelOpen = false;
+      this.authForm.get('token')?.setValue(token);
+      this.onSubmitForm.emit();
+    }
   }
 
   public onSubmit(): void {
     if (this.authForm.valid) {
-      const authKey = this.authForm.get('authKey')?.value;
-      sessionStorage.setItem('authKey', authKey);
+      const token = this.authForm.get('token')?.value;
+      sessionStorage.setItem('token', token);
       this.isTokenSet = true;
       this.panelOpen = false;
       this.onSubmitForm.emit();
