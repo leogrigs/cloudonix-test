@@ -3,9 +3,14 @@ export interface Product extends NewProduct {
 }
 
 export interface NewProduct {
+  id: number;
   name: string;
   description: string;
-  sku: string;
   cost: number;
-  profile: object;
+  profile: {
+    type: 'furniture' | 'equipment' | 'stationary' | 'part';
+    available: boolean;
+    backlog?: number | null;
+    [key: string]: any;
+  };
 }

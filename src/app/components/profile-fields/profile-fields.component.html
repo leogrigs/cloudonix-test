@@ -1,0 +1,30 @@
+<div
+  class="profile-fields"
+  *ngIf="profileFormGroup"
+  [formGroup]="profileFormGroup"
+>
+  <h3 class="mat-subheading-1">Profile</h3>
+  <mat-form-field class="product-modal-form-field" appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select matFormFieldControl formControlName="type">
+      <mat-option value="furniture">Furniture</mat-option>
+      <mat-option value="equipment">Equipment</mat-option>
+      <mat-option value="stationary">Stationary</mat-option>
+      <mat-option value="part">Part</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox matFormFieldControl formControlName="available">
+    Available
+  </mat-checkbox>
+
+  <mat-form-field class="product-modal-form-field" appearance="fill">
+    <mat-label>Backlog</mat-label>
+    <input
+      matInput
+      matFormFieldControl
+      formControlName="backlog"
+      type="number"
+    />
+  </mat-form-field>
+</div>
