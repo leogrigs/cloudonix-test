@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
@@ -9,42 +9,49 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
   standalone: true,
   imports: [
+    CommonModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     MatCardModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule,
-    NgIf,
   ],
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
-export class LoginComponent implements OnInit {
-  public loginForm: FormGroup;
+export class AuthComponent implements OnInit {
+  public authForm: FormGroup;
+  public isTokenSet = false;
+  public panelOpen = false;
 
   @Output() public onSubmitForm = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder) {
-    this.loginForm = this.fb.group({
-      authKey: ['', Validators.required],
+    this.authForm = this.fb.group({
+      token: ['', Validators.required],
     });
   }
 
-  // FIXME: remove
   public ngOnInit(): void {
     this.onSubmitForm.emit();
   }
 
   public onSubmit(): void {
-    if (this.loginForm.valid) {
-      const authKey = this.loginForm.get('authKey')?.value;
+    if (this.authForm.valid) {
+      const authKey = this.authForm.get('authKey')?.value;
       sessionStorage.setItem('authKey', authKey);
+      this.isTokenSet = true;
+      this.panelOpen = false;
       this.onSubmitForm.emit();
     } else {
       console.error('Form is invalid');

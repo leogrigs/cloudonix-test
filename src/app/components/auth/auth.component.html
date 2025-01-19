@@ -1,0 +1,53 @@
+<mat-accordion class="auth-panel">
+  <mat-expansion-panel
+    class="auth-panel-expansion"
+    (opened)="panelOpen = true"
+    (closed)="panelOpen = false"
+    [expanded]="panelOpen"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title> Token Authentication </mat-panel-title>
+      <mat-panel-description *ngIf="isTokenSet">
+        Token successfully set!
+        <mat-icon>check_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form
+      [formGroup]="authForm"
+      (ngSubmit)="onSubmit()"
+      class="auth-panel-content"
+    >
+      <mat-form-field class="auth-panel-field" appearance="fill">
+        <mat-label>Token</mat-label>
+        <input
+          matInput
+          placeholder="Enter your token"
+          formControlName="token"
+        />
+        <button
+          *ngIf="authForm.get('token')?.value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="authForm.get('token')?.reset()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="authForm.get('token')?.hasError('required')">
+          Token is required.
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="auth-panel-button"
+        color="primary"
+        type="submit"
+        [disabled]="authForm.invalid"
+      >
+        Set Token
+      </button>
+    </form>
+  </mat-expansion-panel>
+</mat-accordion>

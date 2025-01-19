@@ -1,8 +1,11 @@
-<main>
-  <div class="example-container">
-    <app-login (onSubmitForm)="updateProducts()"></app-login>
-    <button mat-button (click)="addProduct()">Add Product</button>
+<main class="app-main">
+  <div class="app-main-container">
+    <app-auth (onSubmitForm)="updateProducts()"></app-auth>
+    <button mat-button class="app-main-add-button" (click)="addProduct()">
+      Add Product
+    </button>
     <app-product-table
+      class="app-main-product-table"
       [products]="(products$ | async) ?? []"
       (onEditProduct)="editProduct($event)"
       (onDeleteProduct)="deleteProduct($event)"
