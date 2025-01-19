@@ -29,9 +29,10 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Updated product:', result);
+        console.log(result);
+
         this.cloudonixHttp.editProduct(product.id, result).subscribe({
-          next: (data) => {
+          next: () => {
             this.updateProducts();
           },
         });
@@ -46,7 +47,11 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Created product:', result);
+        this.cloudonixHttp.addProduct(result).subscribe({
+          next: () => {
+            this.updateProducts();
+          },
+        });
       }
     });
   }

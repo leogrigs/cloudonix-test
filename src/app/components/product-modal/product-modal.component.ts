@@ -73,7 +73,6 @@ export class ProductModalComponent {
         ..._product.profile,
         ...this.dynamicProfileData,
       };
-      console.log(_product);
       this.dialogRef.close(_product);
     }
   }

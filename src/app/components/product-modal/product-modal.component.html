@@ -65,7 +65,7 @@
 
     <mat-dialog-actions>
       <div class="product-modal-actions">
-        <button mat-button (click)="onCancel()">Cancel</button>
+        <button type="button" mat-button (click)="onCancel()">Cancel</button>
         <button mat-button type="submit" [disabled]="productForm.invalid">
           {{ data ? "Save" : "Create" }}
         </button>
