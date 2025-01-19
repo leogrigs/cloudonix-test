@@ -1,0 +1,29 @@
+<div class="product-details">
+  <h4 class="mat-subheading-1">Product Details</h4>
+  <mat-divider></mat-divider>
+
+  <div class="product-details-row">
+    <strong>Description</strong>
+    <p>{{ description || "No description available." }}</p>
+  </div>
+
+  <div class="product-details-row">
+    <strong>Profile</strong>
+    <div class="product-details-profile">
+      <ng-container
+        *ngIf="profile && objectKeys(profile).length; else noProfile"
+      >
+        <div
+          class="product-details-profile-item"
+          *ngFor="let key of objectKeys(profile)"
+        >
+          <strong>{{ key | titlecase }}</strong>
+          <span>{{ profile[key] + "" | titlecase }}</span>
+        </div>
+      </ng-container>
+      <ng-template #noProfile>
+        <p>No profile information available.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

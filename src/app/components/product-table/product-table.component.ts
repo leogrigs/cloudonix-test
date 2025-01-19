@@ -6,21 +6,27 @@ import {
   trigger,
 } from '@angular/animations';
 import { CommonModule, CurrencyPipe, JsonPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Product } from 'src/app/interfaces/product.interface';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   standalone: true,
   imports: [
     CommonModule,
     BrowserAnimationsModule,
+    ProductDetailsComponent,
     MatTableModule,
     CurrencyPipe,
     JsonPipe,
     MatIconModule,
+    MatMenuModule,
+    MatButtonModule,
   ],
   selector: 'app-product-table',
   templateUrl: './product-table.component.html',
@@ -38,12 +44,17 @@ import { Product } from 'src/app/interfaces/product.interface';
 })
 export class ProductTableComponent {
   @Input() products: Product[] = [];
+  @Output() onEditProduct = new EventEmitter<Product>();
+  @Output() onDeleteProduct = new EventEmitter<Product>();
 
-  displayedColumns: string[] = ['id', 'sku', 'name', 'cost'];
-  displayedColumnsWithExpand: string[] = [...this.displayedColumns, 'expand'];
-  expandedElement: any | null = null;
+  public displayedColumns: string[] = ['id', 'sku', 'name', 'cost', 'actions'];
+  public displayedColumnsWithExpand: string[] = [
+    ...this.displayedColumns,
+    'expand',
+  ];
+  public expandedElement: any | null = null;
 
-  toggleExpand(element: any): void {
+  public toggleExpand(element: any): void {
     this.expandedElement = this.expandedElement === element ? null : element;
   }
 }
