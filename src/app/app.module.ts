@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthComponent } from './components/auth/auth.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.interceptor';
@@ -22,6 +23,7 @@ import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.intercep
     MatFormFieldModule,
     MatButtonModule,
     ProductTableComponent,
+    MatSnackBarModule,
     AuthComponent,
     HttpClientModule,
     MatDialogModule,

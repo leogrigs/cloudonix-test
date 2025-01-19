@@ -1,7 +1,7 @@
 <main class="app-main">
   <div class="app-main-container">
     <app-auth (onSubmitForm)="updateProducts()"></app-auth>
-    <button mat-button class="app-main-add-button" (click)="addProduct()">
+    <button mat-raised-button color="primary" (click)="addProduct()">
       Add Product
     </button>
     <app-product-table
