@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
 import { Product } from './interfaces/product.interface';
 import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.service';
-
-// TODO: provide feedback for success and errors
 
 @Component({
   selector: 'app-root',
@@ -15,8 +14,9 @@ import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.s
 export class AppComponent {
   private cloudonixHttp = inject(CloudoNixHttpService);
   private dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
 
-  public products$: Observable<Product[]> = this.cloudonixHttp.getProducts();
+  public products$!: Observable<Product[]>;
 
   public updateProducts(): void {
     this.products$ = this.cloudonixHttp.getProducts();
@@ -29,10 +29,10 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Updated product:', result);
         this.cloudonixHttp.editProduct(product.id, result).subscribe({
-          next: (data) => {
+          next: () => {
             this.updateProducts();
+            this.openSnackBar('Product updated successfully');
           },
         });
       }
@@ -46,7 +46,12 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Created product:', result);
+        this.cloudonixHttp.addProduct(result).subscribe({
+          next: () => {
+            this.updateProducts();
+            this.openSnackBar('Product added successfully');
+          },
+        });
       }
     });
   }
@@ -55,7 +60,15 @@ export class AppComponent {
     this.cloudonixHttp.deleteProduct(product.id).subscribe({
       next: () => {
         this.updateProducts();
+        this.openSnackBar('Product deleted successfully');
       },
+    });
+  }
+
+  public openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'center',
     });
   }
 }

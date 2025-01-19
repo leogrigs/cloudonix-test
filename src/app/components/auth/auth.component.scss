@@ -1,0 +1,31 @@
+.auth-panel {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+
+  &-expansion {
+    background-color: #f9f9f9;
+
+    .mat-expansion-panel-header {
+      font-weight: bold;
+
+      mat-icon {
+        color: #388e3c;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    gap: 1rem;
+
+    .auth-panel-field {
+      flex: 1;
+    }
+
+    .auth-panel-button {
+      height: 56px;
+    }
+  }
+}

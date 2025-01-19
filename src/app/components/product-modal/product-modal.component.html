@@ -26,6 +26,9 @@
         <mat-error *ngIf="productForm.get('cost')?.hasError('min')">
           Price cannot be negative
         </mat-error>
+        <mat-error *ngIf="productForm.get('cost')?.hasError('twoDecimal')">
+          Price cannot have more than two decimal places
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="product-modal-form-field" appearance="fill">
@@ -40,20 +43,32 @@
         </mat-error>
       </mat-form-field>
 
-      <app-profile-fields
+      <mat-form-field
+        class="product-modal-form-field"
+        appearance="fill"
+        *ngIf="!data"
+      >
+        <mat-label>SKU</mat-label>
+        <input matInput matFormFieldControl formControlName="sku" />
+        <mat-error *ngIf="productForm.get('sku')?.hasError('required')">
+          SKU is required
+        </mat-error>
+      </mat-form-field>
+
+      <profile-fields
         [profileFormGroup]="getProfileFormGroup()"
         (profileChange)="productForm.get('profile')?.setValue($event)"
-      ></app-profile-fields>
+      ></profile-fields>
 
-      <app-dynamic-profile-fields
+      <dynamic-profile-fields
         [dynamicProfileData]="dynamicProfileData"
         (dynamicProfileChange)="dynamicProfileData = $event"
-      ></app-dynamic-profile-fields>
+      ></dynamic-profile-fields>
     </mat-dialog-content>
 
     <mat-dialog-actions>
       <div class="product-modal-actions">
-        <button mat-button (click)="onCancel()">Cancel</button>
+        <button type="button" mat-button (click)="onCancel()">Cancel</button>
         <button mat-button type="submit" [disabled]="productForm.invalid">
           {{ data ? "Save" : "Create" }}
         </button>
