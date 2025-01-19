@@ -4,7 +4,8 @@
   </h2>
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <mat-dialog-content class="product-modal-content">
-      <mat-form-field appearance="fill">
+      <!-- Name -->
+      <mat-form-field class="product-modal-form-field" appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput matFormFieldControl formControlName="name" />
         <mat-error *ngIf="productForm.get('name')?.hasError('required')">
@@ -12,9 +13,15 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <!-- Cost -->
+      <mat-form-field class="product-modal-form-field" appearance="fill">
         <mat-label>Price</mat-label>
-        <input matInput formControlName="cost" type="number" />
+        <input
+          matInput
+          matFormFieldControl
+          formControlName="cost"
+          type="number"
+        />
         <mat-error *ngIf="productForm.get('cost')?.hasError('required')">
           Price is required
         </mat-error>
@@ -23,16 +30,27 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <!-- Description -->
+      <mat-form-field class="product-modal-form-field" appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description"></textarea>
+        <textarea
+          matInput
+          matFormFieldControl
+          formControlName="description"
+        ></textarea>
         <mat-error *ngIf="productForm.get('description')?.hasError('required')">
           Description is required
         </mat-error>
       </mat-form-field>
+
+      <!-- Profile Fields -->
+      <app-profile-fields
+        [profileFormGroup]="getProfileFormGroup()"
+        (profileChange)="productForm.get('profile')?.setValue($event)"
+      ></app-profile-fields>
     </mat-dialog-content>
 
-    <mat-dialog-actions class="product-modal-actions">
+    <mat-dialog-actions>
       <button mat-button (click)="onCancel()">Cancel</button>
       <button mat-button type="submit" [disabled]="productForm.invalid">
         {{ data ? "Save" : "Create" }}

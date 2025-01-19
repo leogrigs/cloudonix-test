@@ -1,19 +1,69 @@
 .product-modal {
+  width: 600px;
   padding: 16px;
 
   &-title {
-    padding: 0;
+    margin-bottom: 16px;
+    font-weight: bold;
   }
 
   &-content {
-    min-width: 300px;
     display: flex;
     flex-direction: column;
-    padding: 0;
+    gap: 16px;
+  }
+
+  &-form-field {
+    width: 100%;
+  }
+
+  &-checkbox {
+    margin: 8px 0;
+  }
+
+  &-profile {
+    margin-top: 16px;
+
+    h4 {
+      margin-bottom: 8px;
+    }
+
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      strong {
+        margin-right: 8px;
+      }
+
+      input {
+        flex: 1;
+      }
+    }
   }
 
   &-actions {
     display: flex;
     justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+
+    &-thumb {
+      background-color: #b0bec5; /* Light gray thumb */
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #90a4ae; /* Slightly darker on hover */
+      }
+    }
+
+    &-track {
+      background-color: #eceff1; /* Light track background */
+      border-radius: 4px;
+    }
   }
 }

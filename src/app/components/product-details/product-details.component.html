@@ -18,7 +18,7 @@
           *ngFor="let key of objectKeys(profile)"
         >
           <strong>{{ key | titlecase }}</strong>
-          <span>{{ profile[key] | titlecase }}</span>
+          <span>{{ profile[key] + "" | titlecase }}</span>
         </div>
       </ng-container>
       <ng-template #noProfile>
