@@ -15,6 +15,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Product } from 'src/app/interfaces/product.interface';
+import { twoDecimalValidator } from 'src/app/utils/two-decimal-validator';
 
 @Component({
   standalone: true,
@@ -51,7 +52,10 @@ export class ProductModalComponent {
 
     this.productForm = this.fb.group({
       name: [data?.name || '', Validators.required],
-      cost: [data?.cost || 0, [Validators.required, Validators.min(0)]],
+      cost: [
+        data?.cost || 0,
+        [Validators.required, Validators.min(0), twoDecimalValidator],
+      ],
       description: [data?.description || '', Validators.required],
       ...(!data && { sku: ['', Validators.required] }),
       profile: this.fb.group({

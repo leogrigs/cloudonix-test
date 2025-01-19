@@ -26,6 +26,9 @@
         <mat-error *ngIf="productForm.get('cost')?.hasError('min')">
           Price cannot be negative
         </mat-error>
+        <mat-error *ngIf="productForm.get('cost')?.hasError('twoDecimal')">
+          Price cannot have more than two decimal places
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="product-modal-form-field" appearance="fill">
