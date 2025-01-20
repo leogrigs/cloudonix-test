@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthComponent } from './components/auth/auth.component';
+import { EmptyStateComponent } from './components/empty-state/empty-state.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.interceptor';
 
@@ -25,6 +26,7 @@ import { CloudonixHttpInterceptor } from './interceptors/cloudonix-http.intercep
     ProductTableComponent,
     MatSnackBarModule,
     AuthComponent,
+    EmptyStateComponent,
     HttpClientModule,
     MatDialogModule,
   ],

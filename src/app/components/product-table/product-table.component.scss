@@ -1,35 +1,62 @@
-table {
+.product-table {
   width: 100%;
-}
+  &-header-row,
+  &-row {
+    display: table-row;
+  }
 
-tr.example-detail-row {
-  height: 0;
-}
+  &-header {
+    font-weight: bold;
+    text-align: left;
+  }
 
-tr.example-element-row:not(.example-expanded-row):hover {
-  background: whitesmoke;
-}
+  &-cell {
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
 
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
-}
+    &.product-table-actions-column {
+      text-align: center;
+    }
+  }
 
-.example-element-row td {
-  border-bottom-width: 0;
-  cursor: pointer;
-}
+  &-price-column {
+    &-text {
+      color: #388e3c;
+      font-weight: 500;
+    }
+  }
 
-.expanded-detail {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
+  &-expand-cell {
+    text-align: center;
+  }
 
-h4 {
-  margin: 0 0 8px;
+  &-expanded-row {
+    background: #f9f9f9;
+  }
+
+  &-detail-row {
+    height: 0;
+  }
+
+  &-expanded-detail-cell {
+    padding: 0;
+  }
+
+  &-expanded-detail {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 mat-icon {
   vertical-align: middle;
+}
+
+.product-table-row:not(.product-table-expanded-row):hover {
+  background: #f5f5f5;
+}
+
+.product-table-row:not(.product-table-expanded-row):active {
+  background: #e0e0e0;
 }

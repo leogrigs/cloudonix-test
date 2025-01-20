@@ -52,7 +52,7 @@ Ensure you have the following installed:
 To create a production build:
 
 ```bash
-ng build --configuration production
+npm run
 ```
 
 The build artifacts will be located in the `dist/cloudonix-test` directory.
