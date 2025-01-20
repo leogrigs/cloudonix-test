@@ -1,27 +1,85 @@
-# CloudonixTest
+# **Cloudonix Test**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.11.
+This project is a web application built with **Angular 15** and **Node.js v20**. The app is designed to showcase dynamic components and a responsive UI while interacting with an external API. It is deployed on **Vercel** and accessible at: [https://cloudonix-test.vercel.app/](https://cloudonix-test.vercel.app/).
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## **Features**
 
-## Code scaffolding
+- **Responsive UI**: Built with Angular Material.
+- **State Management**: Reactive programming with RxJS.
+- **Live Deployment**: Hosted on **Vercel**.
+- **Error Handling**: Includes interceptors for API requests.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## **Prerequisites**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ensure you have the following installed:
 
-## Running unit tests
+- **Node.js**: Version 20 or later ([Download Node.js](https://nodejs.org/))
+- **Angular CLI**: Version 15. Run `npm install -g @angular/cli` to install.
+- **Browser Configuration**:
+  - The external API (`http://rest-items.research.cloudonix.io`) is served over HTTP. If accessing the app on Vercel (HTTPS), you must allow insecure content in your browser settings.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## **Installation and Setup**
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. Clone the repository:
 
-## Further help
+   ```bash
+   git clone https://github.com/your-repository/cloudonix-test.git
+   cd cloudonix-test
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   ng serve
+   ```
+   Navigate to [http://localhost:4200](http://localhost:4200) in your browser.
+
+---
+
+## **Building the Application**
+
+To create a production build:
+
+```bash
+ng build --configuration production
+```
+
+The build artifacts will be located in the `dist/cloudonix-test` directory.
+
+---
+
+## **Accessing the Application on Vercel**
+
+Due to the HTTP API endpoint, follow these steps to allow insecure content:
+
+1. Open your browser's settings.
+2. Navigate to **Site Settings** > **Insecure Content**.
+3. Allow insecure content for `https://cloudonix-test.vercel.app`.
+
+---
+
+## **API Configuration**
+
+The application interacts with the following API:
+
+- **Base URL**: `http://rest-items.research.cloudonix.io`
+- **Endpoints**: `/items`
+
+Ensure the API is accessible from your network.
+
+---
+
+## **Further Help**
+
+For more information on Angular CLI, refer to the [Angular CLI Documentation](https://angular.io/cli).
