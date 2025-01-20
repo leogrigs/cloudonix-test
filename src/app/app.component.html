@@ -5,11 +5,14 @@
       Add Product
     </button>
     <app-product-table
-      *ngIf="(products$ | async) ?? [].length > 0"
+      *ngIf="(products$ | async) ?? [].length > 0; else emptyState"
       class="app-main-product-table"
       [products]="(products$ | async) ?? []"
       (onEditProduct)="editProduct($event)"
       (onDeleteProduct)="deleteProduct($event)"
     ></app-product-table>
+    <ng-template #emptyState>
+      <app-empty-state></app-empty-state>
+    </ng-template>
   </div>
 </main>
