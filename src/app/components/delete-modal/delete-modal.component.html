@@ -1,0 +1,11 @@
+<div class="delete-modal">
+  <h2>Are you sure you want to delete this product?</h2>
+  <p>
+    This action cannot be undone. This will permanently delete the product from
+    the system.
+  </p>
+  <div class="delete-modal-actions">
+    <button type="button" mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button type="submit" (click)="onDelete()">Delete</button>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
 import { Product } from './interfaces/product.interface';
 import { CloudoNixHttpService } from './services/cloudonix-http/cloudonix-http.service';
@@ -57,11 +58,17 @@ export class AppComponent {
   }
 
   public deleteProduct(product: Product): void {
-    this.cloudonixHttp.deleteProduct(product.id).subscribe({
-      next: () => {
-        this.updateProducts();
-        this.openSnackBar('Product deleted successfully');
-      },
+    const dialogRef = this.dialog.open(DeleteModalComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.cloudonixHttp.deleteProduct(product.id).subscribe({
+          next: () => {
+            this.updateProducts();
+            this.openSnackBar('Product deleted successfully');
+          },
+        });
+      }
     });
   }
 
