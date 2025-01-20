@@ -6,11 +6,10 @@
     [expanded]="panelOpen"
   >
     <mat-expansion-panel-header>
-      <mat-panel-title> Token Authentication </mat-panel-title>
-      <mat-panel-description *ngIf="isTokenSet">
-        Token set!
-        <mat-icon>check_circle</mat-icon>
-      </mat-panel-description>
+      <mat-panel-title>
+        Token Authentication
+        <mat-icon *ngIf="isTokenSet">check_circle</mat-icon>
+      </mat-panel-title>
     </mat-expansion-panel-header>
 
     <form
