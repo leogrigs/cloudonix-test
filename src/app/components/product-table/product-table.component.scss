@@ -14,14 +14,15 @@
     border-bottom: 1px solid #e0e0e0;
     cursor: pointer;
 
-    &.product-table-price-column {
-      text-align: right;
-      color: #4caf50;
-      font-weight: bold;
-    }
-
     &.product-table-actions-column {
       text-align: center;
+    }
+  }
+
+  &-price-column {
+    &-text {
+      color: #388e3c;
+      font-weight: 500;
     }
   }
 
